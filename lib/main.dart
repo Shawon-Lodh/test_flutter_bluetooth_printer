@@ -1,10 +1,7 @@
-import 'dart:io';
+import 'package:image/image.dart';
 import 'dart:typed_data';
 import 'package:intl/intl.dart';
-import 'package:qr_flutter/qr_flutter.dart';
-import 'package:path_provider/path_provider.dart';
 import 'package:flutter/services.dart';
-import 'package:image/image.dart';
 import 'package:esc_pos_utils/esc_pos_utils.dart';
 import 'package:esc_pos_bluetooth/esc_pos_bluetooth.dart';
 import 'package:flutter/material.dart' hide Image;
@@ -103,8 +100,8 @@ class _MyHomePageState extends State<MyHomePage> {
         styles: PosStyles(align: PosAlign.center));
     bytes += ticket.hr();
 
-    bytes += ticket.text('রমিজ উদ্দিন',
-        styles: PosStyles(align: PosAlign.center));
+    // bytes += ticket.text('রমিজ উদ্দিন',
+    //     styles: PosStyles(align: PosAlign.center));
 
     // //Print QR Code from image
     // try {
@@ -128,6 +125,12 @@ class _MyHomePageState extends State<MyHomePage> {
 
     // Print QR Code using native function
     // bytes += ticket.qrcode('example.com');
+
+    final ByteData data = await rootBundle.load('assets/images/default.png');
+    final Uint8List buffer= data.buffer.asUint8List();
+    final  image = decodeImage(buffer);
+
+    bytes += ticket.image(image!);
 
     bytes += ticket.feed(2);
     bytes += ticket.text('Thank you!',
