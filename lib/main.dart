@@ -64,12 +64,6 @@ class _MyHomePageState extends State<MyHomePage> {
     final Generator ticket = Generator(paper, profile);
     List<int> bytes = [];
 
-    // Print image
-    // final ByteData data = await rootBundle.load('assets/rabbit_black.jpg');
-    // final Uint8List imageBytes = data.buffer.asUint8List();
-    // final Image? image = decodeImage(imageBytes);
-    // bytes += ticket.image(image);
-
     bytes += ticket.text('GLOBAL LEAF TOBACCO COMPANY LTD',
         styles: PosStyles(align: PosAlign.center));
 
@@ -87,44 +81,18 @@ class _MyHomePageState extends State<MyHomePage> {
     bytes += ticket.qrcode("testtesttesttesttesttesttesttest",size: QRSize.Size8,align: PosAlign.center);
 
     bytes += ticket.text('Name : Ramiz Uddin',
-        styles: PosStyles(align: PosAlign.center));
+        styles: const PosStyles(align: PosAlign.center));
     bytes += ticket.text('Father Name : Sukkor Molla',
-        styles: PosStyles(align: PosAlign.center));
+        styles: const PosStyles(align: PosAlign.center));
     bytes += ticket.text('Reg No : 1234567890',
-        styles: PosStyles(align: PosAlign.center));
+        styles: const PosStyles(align: PosAlign.center));
     bytes += ticket.text('Bale : 5',
-        styles: PosStyles(align: PosAlign.center));
+        styles: const PosStyles(align: PosAlign.center));
     bytes += ticket.text('Ext Center : Rongpur',
-        styles: PosStyles(align: PosAlign.center));
+        styles: const PosStyles(align: PosAlign.center));
     bytes += ticket.text('Tp Issue Date : ${DateTime.now()}',
-        styles: PosStyles(align: PosAlign.center));
+        styles: const PosStyles(align: PosAlign.center));
     bytes += ticket.hr();
-
-    // bytes += ticket.text('রমিজ উদ্দিন',
-    //     styles: PosStyles(align: PosAlign.center));
-
-    // //Print QR Code from image
-    // try {
-    //   const String qrData = 'example.com';
-    //   const double qrSize = 200;
-    //   final uiImg = await QrPainter(
-    //     data: qrData,
-    //     version: QrVersions.auto,
-    //     gapless: false,
-    //   ).toImageData(qrSize);
-    //   final dir = await getTemporaryDirectory();
-    //   final pathName = '${dir.path}/qr_tmp.png';
-    //   final qrFile = File(pathName);
-    //   final imgFile = await qrFile.writeAsBytes(uiImg!.buffer.asUint8List());
-    //   final img = decodeImage(imgFile.readAsBytesSync());
-    //
-    //   bytes += ticket.image(img!);
-    // } catch (e) {
-    //   print(e);
-    // }
-
-    // Print QR Code using native function
-    // bytes += ticket.qrcode('example.com');
 
     final ByteData data = await rootBundle.load('assets/images/default.png');
     final Uint8List buffer= data.buffer.asUint8List();
@@ -140,38 +108,7 @@ class _MyHomePageState extends State<MyHomePage> {
     final formatter = DateFormat('MM/dd/yyyy H:m');
     final String timestamp = formatter.format(now);
     bytes += ticket.text(timestamp,
-        styles: PosStyles(align: PosAlign.center), linesAfter: 2);
-
-    // Print QR Code from image
-    // try {
-    //   const String qrData = 'example.com';
-    //   const double qrSize = 200;
-    //   final uiImg = await QrPainter(
-    //     data: qrData,
-    //     version: QrVersions.auto,
-    //     gapless: false,
-    //   ).toImageData(qrSize);
-    //   final dir = await getTemporaryDirectory();
-    //   final pathName = '${dir.path}/qr_tmp.png';
-    //   final qrFile = File(pathName);
-    //   final imgFile = await qrFile.writeAsBytes(uiImg.buffer.asUint8List());
-    //   final img = decodeImage(imgFile.readAsBytesSync());
-
-    //   bytes += ticket.image(img);
-    // } catch (e) {
-    //   print(e);
-    // }
-
-    // Print QR Code using native function
-    // bytes += ticket.qrcode('example.com');
-
-    //Print image
-    // try {
-    //   final image = decodeImage(File('assets/images/default.png').readAsBytesSync())!;
-    //   bytes += ticket.image(image);
-    // } catch (e) {
-    //   print(e);
-    // }
+        styles: const PosStyles(align: PosAlign.center), linesAfter: 2);
 
     ticket.feed(2);
     ticket.cut();
