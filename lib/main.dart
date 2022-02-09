@@ -44,6 +44,9 @@ class _MyHomePageState extends State<MyHomePage> {
       // print('UI: Devices found ${devices.length}');
       setState(() {
         _devices = devices;
+        for(int i = 0;i<_devices.length;i++){
+          print("Name : ${_devices[i].name}, Address : ${_devices[i].address}, Type : ${_devices[i].type}");
+        }
       });
     });
   }
@@ -147,7 +150,7 @@ class _MyHomePageState extends State<MyHomePage> {
               child: Column(
                 children: <Widget>[
                   Container(
-                    height: 60,
+                    height: 80,
                     padding: EdgeInsets.only(left: 10),
                     alignment: Alignment.centerLeft,
                     child: Row(
@@ -161,6 +164,7 @@ class _MyHomePageState extends State<MyHomePage> {
                             children: <Widget>[
                               Text(_devices[index].name ?? ''),
                               Text(_devices[index].address!),
+                              Text(_devices[index].type!.toString()),
                               Text(
                                 'Click to print a test receipt',
                                 style: TextStyle(color: Colors.grey[700]),
