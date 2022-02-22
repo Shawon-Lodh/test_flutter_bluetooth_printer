@@ -7,6 +7,7 @@ import 'package:esc_pos_bluetooth/esc_pos_bluetooth.dart';
 import 'package:flutter/material.dart' hide Image;
 import 'package:oktoast/oktoast.dart';
 import 'package:test_flutter_bluetooth_printer/bluetooth_basic_library_example.dart';
+import 'package:test_flutter_bluetooth_printer/bluetooth_enable_library_sample.dart';
 
 void main() => runApp(MyApp());
 
@@ -20,7 +21,7 @@ class MyApp extends StatelessWidget {
           primarySwatch: Colors.blue,
         ),
         // home: MyHomePage(title: 'Bluetooth demo'),\
-        home: BluetoothBasicLibraryExample(),
+        home: BlueToothEnableLibraryExample(),
       ),
     );
   }

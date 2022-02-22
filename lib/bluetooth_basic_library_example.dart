@@ -3,7 +3,9 @@
 */
 
 import 'dart:convert';
+import 'dart:typed_data';
 
+import 'package:bluetooth_enable/bluetooth_enable.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bluetooth_basic/flutter_bluetooth_basic.dart';
 
@@ -22,8 +24,13 @@ class _BluetoothBasicLibraryExampleState extends State<BluetoothBasicLibraryExam
   @override
   void initState() {
     super.initState();
+    bluetoothStatus();
+    // WidgetsBinding.instance!.addPostFrameCallback((_) => initBluetooth());
+  }
 
-    WidgetsBinding.instance!.addPostFrameCallback((_) => initBluetooth());
+  Future<void> bluetoothStatus() async {
+    print(await bluetoothManager.isConnected);
+
   }
 
   // Platform messages are asynchronous, so we initialize in an async method.
@@ -83,7 +90,7 @@ class _BluetoothBasicLibraryExampleState extends State<BluetoothBasicLibraryExam
     // Set codetable west. Add import 'dart:typed_data';
     // List<int> bytes = Uint8List.fromList(List.from('\x1Bt'.codeUnits)..add(6));
     // Text with special characters
-    // bytes += latin1.encode('blåbærgrød\n\n\n');
+    bytes += latin1.encode('blåbærgrød\n\n\n');
 
     await bluetoothManager.writeData(bytes);
   }
@@ -117,7 +124,7 @@ class _BluetoothBasicLibraryExampleState extends State<BluetoothBasicLibraryExam
                   children: snapshot.data
                       !.map((d) => ListTile(
                     title: Text(d.name ?? ''),
-                    subtitle: Text(d.address!),
+                    subtitle: Text(d.address! + '\n${d.type}'),
                     onTap: () async {
                       setState(() {
                         _device = d;
@@ -177,8 +184,9 @@ class _BluetoothBasicLibraryExampleState extends State<BluetoothBasicLibraryExam
           } else {
             return FloatingActionButton(
                 child: const Icon(Icons.search),
-                onPressed: () =>
-                    bluetoothManager.startScan(timeout: const Duration(seconds: 4)));
+                onPressed: (){
+                  bluetoothManager.startScan(timeout: const Duration(seconds: 4));
+                });
           }
         },
       ),

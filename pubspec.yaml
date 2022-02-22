@@ -39,6 +39,7 @@ dependencies:
   qr_flutter: ^4.0.0
   path_provider: ^2.0.2
   flutter_bluetooth_basic: ^0.1.7
+  bluetooth_enable: ^0.1.1
 
 dev_dependencies:
   flutter_test:
