@@ -6,6 +6,7 @@ import 'package:esc_pos_utils/esc_pos_utils.dart';
 import 'package:esc_pos_bluetooth/esc_pos_bluetooth.dart';
 import 'package:flutter/material.dart' hide Image;
 import 'package:oktoast/oktoast.dart';
+import 'package:test_flutter_bluetooth_printer/bluetooth_basic_library_example.dart';
 
 void main() => runApp(MyApp());
 
@@ -18,7 +19,8 @@ class MyApp extends StatelessWidget {
         theme: ThemeData(
           primarySwatch: Colors.blue,
         ),
-        home: MyHomePage(title: 'Bluetooth demo'),
+        // home: MyHomePage(title: 'Bluetooth demo'),\
+        home: BluetoothBasicLibraryExample(),
       ),
     );
   }
@@ -55,7 +57,7 @@ class _MyHomePageState extends State<MyHomePage> {
     setState(() {
       _devices = [];
     });
-    printerManager.startScan(Duration(seconds: 4));
+    printerManager.startScan(const Duration(seconds: 4));
   }
 
   void _stopScanDevices() {
@@ -68,13 +70,13 @@ class _MyHomePageState extends State<MyHomePage> {
     List<int> bytes = [];
 
     bytes += ticket.text('GLOBAL LEAF TOBACCO COMPANY LTD',
-        styles: PosStyles(align: PosAlign.center));
+        styles: const PosStyles(align: PosAlign.center));
 
     bytes += ticket.text('Crop Year 2021',
-        styles: PosStyles(align: PosAlign.center));
+        styles: const PosStyles(align: PosAlign.center));
 
     bytes += ticket.text('Tobacco Transport Permit',
-        styles: PosStyles(
+        styles: const PosStyles(
           align: PosAlign.center,
           height: PosTextSize.size2,
           width: PosTextSize.size2,
@@ -186,13 +188,13 @@ class _MyHomePageState extends State<MyHomePage> {
         builder: (c, snapshot) {
           if (snapshot.data!) {
             return FloatingActionButton(
-              child: Icon(Icons.stop),
+              child: const Icon(Icons.stop),
               onPressed: _stopScanDevices,
               backgroundColor: Colors.red,
             );
           } else {
             return FloatingActionButton(
-              child: Icon(Icons.search),
+              child: const Icon(Icons.search),
               onPressed: _startScanDevices,
             );
           }
